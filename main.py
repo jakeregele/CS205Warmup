@@ -1,4 +1,5 @@
 import sqlite3
+import csv
 
 
 def main():
@@ -21,8 +22,16 @@ def main():
 def load_data(fileName):
 
     # initialize db tables
-    
     # populate each with csvs
+    # load each csv into vector and populate tables with them
+    top_songs = []
+    top_artists = []
+    for row in csv.reader("top50songs.csv"):
+        top_songs.append(row)
+
+    for row in csv.reader("artists.csv"):
+        top_artists.append(row)
+
     # create RDB connection
     # overwrite current DB tables in memory
 
