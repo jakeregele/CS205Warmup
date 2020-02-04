@@ -5,6 +5,14 @@ import csv
 def main():
     user_input = ''
 
+    # initialize connection with database
+    db = sqlite3.connect('spotify_data')
+    # create db tables
+    create_table(db, "Create Table 1 String Here")
+    create_table(db, "Create Table 2 String Here")
+
+    load_data(db)
+
     # main program loop for user input
     while user_input.lower() not in ['q', 'quit']:
 
@@ -19,7 +27,7 @@ def main():
 
 
 # load data from file
-def load_data(dbSongs, dbArtists):
+def load_data(db):
 
     # initialize db tables
     # populate each with csvs
@@ -34,11 +42,13 @@ def load_data(dbSongs, dbArtists):
 
     for x in range(1, len(top_songs) + 1):
         insert_statement = "INSERT INTO top_songs VALUES " + (x, top_songs[x][0], top_songs[x - 1][1], top_songs[x - 1][2], top_songs[x - 1][3]) + ";"
-        dbSongs.execute(insert_statement)
+        db.execute(insert_statement)
 
     for x in range(1, len(top_artists) + 1):
         insert_statement = "INSERT INTO top_artists VALUES " + (x, top_songs[x][0], top_artists[x - 1][1], top_artists[x - 1][2], top_artists[x - 1][3]) + ";"
-        dbArtists.execute(insert_statement)
+        db.execute(insert_statement)
+
+    db.commit()
 
     return 0
     # one of the commands should be load data, which will create the database and the schema and read
