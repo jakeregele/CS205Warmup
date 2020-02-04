@@ -19,7 +19,7 @@ def main():
 
 
 # load data from file
-def load_data(fileName):
+def load_data(dbSongs, dbArtists):
 
     # initialize db tables
     # populate each with csvs
@@ -32,8 +32,13 @@ def load_data(fileName):
     for row in csv.reader("artists.csv"):
         top_artists.append(row)
 
-    # create RDB connection
-    # overwrite current DB tables in memory
+    for x in range(1, len(top_songs) + 1):
+        insert_statement = "INSERT INTO top_songs VALUES " + (x, top_songs[x][0], top_songs[x - 1][1], top_songs[x - 1][2], top_songs[x - 1][3]) + ";"
+        dbSongs.execute(insert_statement)
+
+    for x in range(1, len(top_artists) + 1):
+        insert_statement = "INSERT INTO top_artists VALUES " + (x, top_songs[x][0], top_artists[x - 1][1], top_artists[x - 1][2], top_artists[x - 1][3]) + ";"
+        dbArtists.execute(insert_statement)
 
     return 0
     # one of the commands should be load data, which will create the database and the schema and read
