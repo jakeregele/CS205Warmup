@@ -54,7 +54,7 @@ def load_data(db):
         db.execute(insert_statement)
 
     for x in range(1, len(top_artists) + 1):
-        insert_statement = "INSERT INTO top_songs VALUES (" + x + "," + top_artists[x][0] + "," + top_artists[x][1] + "," + top_artists[x][2] + ");"
+        insert_statement = "INSERT INTO top_artists VALUES (" + x + "," + top_artists[x][0] + "," + top_artists[x][1] + "," + top_artists[x][2] + ");"
         db.execute(insert_statement)
 
     db.commit()
