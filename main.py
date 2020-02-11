@@ -7,9 +7,14 @@ def main():
 
     # initialize connection with database
     db = sqlite3.connect('spotify_data.db')
+
+    drop_tables(db, "DROP TABLE top_songs;")
+    drop_tables(db, "DROP TABLE top_artists;")
+
+    db = sqlite3.connect('spotify_data.db')
     # create db tables
-    create_table(db, "Create Table 1 String Here")
-    create_table(db, "Create Table 2 String Here")
+    create_table(db, "CREATE TABLE top_songs(id INTEGER PRIMARY KEY, song_name CHAR[64], song_length INTEGER, ranking INT, artist INT);")
+    create_table(db, "CREATE TABLE top_artists(id INTEGER PRIMARY KEY, artist_name CHAR[32], genre CHAR[32], top_ranked_song INT);")
 
     load_data(db)
 
@@ -66,6 +71,14 @@ def create_table(db, table):
     db.execute(table)
     db.commit()
 
+
+# drop tables before recreating them for each iteration
+def drop_tables(db, table):
+    db.cursor()
+    db.execute(table)
+    db.commit()
+
+
 # query database, load data if not already loaded
 def query(sqlString):
     return 0
@@ -76,5 +89,6 @@ def parse(userList):
     query_string = ''
 
     return query_string
+
 
 main()
