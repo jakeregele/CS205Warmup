@@ -8,8 +8,8 @@ def main():
     # initialize connection with database
     db = sqlite3.connect('spotify_data')
     # create db tables
-    create_table(db, "Create Table 1 String Here")
-    create_table(db, "Create Table 2 String Here")
+    create_table(db, "CREATE TABLE top_songs (id int, song_name char[64], song_length int, ranking int, artist int);")
+    create_table(db, "CREATE TABLE top_artists (id int, artist_name char[32], genre char[32], top_ranked_song int);")
 
     load_data(db)
 
