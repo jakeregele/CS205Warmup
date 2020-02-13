@@ -8,15 +8,6 @@ def main():
     # initialize connection with database
     db = sqlite3.connect('spotify_data.db')
 
-    drop_tables(db, "DROP TABLE top_songs;")
-    drop_tables(db, "DROP TABLE top_artists;")
-
-    # create db tables
-    create_table(db, "CREATE TABLE top_artists(id INTEGER PRIMARY KEY, artist_name CHAR[32], genre CHAR[32], top_ranked_song CHAR[32]);")
-    create_table(db, "CREATE TABLE top_songs(id INTEGER PRIMARY KEY, song_name CHAR[64], song_length INTEGER, ranking INTEGER, artist INTEGER, FOREIGN KEY (artist) REFERENCES top_artists(id));")
-
-    load_data(db)
-
     # main program loop for user input
     while user_input.lower() not in ['q', 'quit']:
 
@@ -27,11 +18,19 @@ def main():
         if user_input.lower() not in ['q', 'quit']:
             user_input.split()
             query_string = parse(user_input)
-            query(query_string)
+            if (query_string != "-1"):
+                query(query_string)
 
 
 # load data from file
 def load_data(db):
+    # remove any existing tables from db
+    drop_tables(db, "DROP TABLE top_songs;")
+    drop_tables(db, "DROP TABLE top_artists;")
+
+    # create db tables
+    create_table(db, "CREATE TABLE top_artists(id INTEGER PRIMARY KEY, artist_name CHAR[32], genre CHAR[32], top_ranked_song CHAR[64]);")
+    create_table(db, "CREATE TABLE top_songs(id INTEGER PRIMARY KEY, song_name CHAR[64], song_length INTEGER, ranking INTEGER, artist INTEGER, FOREIGN KEY (artist) REFERENCES top_artists(id));")
 
     # initialize db tables
     # populate each with csvs
