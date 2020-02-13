@@ -12,8 +12,8 @@ def main():
     drop_tables(db, "DROP TABLE top_artists;")
 
     # create db tables
-    create_table(db, "CREATE TABLE top_songs(id INTEGER PRIMARY KEY, song_name CHAR[64], song_length INTEGER, ranking INTEGER, artist CHAR[64]);")
-    create_table(db, "CREATE TABLE top_artists(id INTEGER PRIMARY KEY, artist_name CHAR[32], genre CHAR[32], top_ranked_song CHAR[64]);")
+    create_table(db, "CREATE TABLE top_artists(id INTEGER PRIMARY KEY, artist_name CHAR[32], genre CHAR[32], top_ranked_song CHAR[32]);")
+    create_table(db, "CREATE TABLE top_songs(id INTEGER PRIMARY KEY, song_name CHAR[64], song_length INTEGER, ranking INTEGER, artist INTEGER, FOREIGN KEY (artist) REFERENCES top_artists(id));")
 
     load_data(db)
 
