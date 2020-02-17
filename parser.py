@@ -45,7 +45,7 @@ elif args.genre:
     # Output what the user inputted
     print("Song Name: ", arg_str)
     # Create a list to send to DB
-    userChoice = ['genre', 'song', arg_str]
+    userChoice = ['genre', 'artist', arg_str]
     temp = query(db, userChoice)
     if temp != "":
         print("The Genre is:", temp)
@@ -127,7 +127,6 @@ elif args.lengthArtist:
             print("The length is:", length)
     else:
         print(arg_str, " was not found. Try again")
-
 
 
 else:
