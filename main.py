@@ -1,7 +1,6 @@
 import sqlite3
 import csv
 
-
 def main():
     user_input = ''
 
