@@ -1,6 +1,7 @@
 import sqlite3
 import csv
 
+
 def main():
     user_input = ''
 
@@ -17,7 +18,7 @@ def main():
         if user_input.lower() not in ['q', 'quit']:
             user_input.split()
             query_string = parse(user_input)
-            if (query_string != "-1"):
+            if query_string != "-1":
                 query(query_string)
 
 
@@ -110,9 +111,12 @@ def query(db, sql_list):
 
     return val
 
+
 def select_helper(query, db):
     cur = db.cursor()
     cur.execute(query)
     val = cur.fetchone()[0]
     return val
+
+
 main()
