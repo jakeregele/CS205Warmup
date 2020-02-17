@@ -52,8 +52,6 @@ elif args.genre:
     else:
         print("Query invalid")
 
-    # Testing to make sure list was correct
-    # print("Genre: ", userChoice)
 
 elif args.ranking:
     if not loaded:
@@ -72,9 +70,6 @@ elif args.ranking:
     else:
         print("Query invalid")
 
-    # Testing to make sure list was correct
-    # print("Ranking: ", userChoice)
-
 elif args.lengthSong:
     if not loaded:
         print("Database has to be loaded...")
@@ -88,12 +83,22 @@ elif args.lengthSong:
     userChoice = ['length', 'top_song', arg_str]
     temp = query(db, userChoice)
     if temp:
-        print("The length is:", temp)
+        minute = temp // 60
+        seconds = temp - (minute * 60)
+        if seconds < 10:
+            length = str(minute)
+            length += ":0"
+            length += str(seconds)
+            print("The length is:", length)
+        else:
+            length = str(minute)
+            length += ":"
+            length += str(seconds)
+            print("The length is:", length)
+
     else:
         print("Query invalid")
 
-    # Testing to make sure list was correct
-    # print("Length: ", userChoice)
 
 elif args.lengthArtist:
     if not loaded:
@@ -108,12 +113,21 @@ elif args.lengthArtist:
     userChoice = ['length', 'song', arg_str]
     temp = query(db, userChoice)
     if temp:
-        print("The length is:", temp)
+        minute = temp // 60
+        seconds = temp - (minute * 60)
+        if seconds < 10:
+            length = str(minute)
+            length += ":0"
+            length += str(seconds)
+            print("The length is:", length)
+        else:
+            length = str(minute)
+            length += ":"
+            length += str(seconds)
+            print("The length is:", length)
+
     else:
         print("Query invalid")
-
-    # Testing to make sure list was correct
-    # print("Length: ", userChoice)
 
 else:
     print(args)
