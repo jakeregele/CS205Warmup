@@ -77,8 +77,17 @@ def drop_tables(db, table):
 
 
 # query database, load data if not already loaded
-def query(sqlString):
-    return 0
+def query(db, sqlString):
+    # create cursor linked to db
+    cur = db.cursor()
+
+    # execute sql commands
+    cur.execute(sqlString)
+
+    # get and return results
+    rows = cur.fetchall()
+
+    return rows
 
 
 main()
