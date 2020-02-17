@@ -47,6 +47,7 @@ elif args.genre:
     # Create a list to send to DB
     userChoice = ['genre', 'song', arg_str]
     # TODO: Send list to database
+    query(db, userChoice)
 
     # Testing to make sure list was correct
     # print("Genre: ", userChoice)
@@ -63,6 +64,7 @@ elif args.ranking:
     print("Artist Name: ", arg_str)
     userChoice = ['ranking', 'artist', arg_str]
     # TODO: Send list to database
+    query(db, userChoice)
 
     # Testing to make sure list was correct
     # print("Ranking: ", userChoice)
@@ -79,6 +81,7 @@ elif args.lengthSong:
     print("Song Name: ", arg_str)
     userChoice = ['length', 'top_song', arg_str]
     # TODO: Send list to database
+    query(db, userChoice)
 
     # Testing to make sure list was correct
     # print("Length: ", userChoice)
@@ -95,6 +98,7 @@ elif args.lengthArtist:
     print("Artist Name: ", arg_str)
     userChoice = ['length', 'song', arg_str]
     # TODO: Send list to database
+    query(db, userChoice)
 
     # Testing to make sure list was correct
     # print("Length: ", userChoice)

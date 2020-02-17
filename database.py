@@ -82,7 +82,7 @@ def drop_tables(db, table):
 # command[0] = return variable
 # command[1] = table
 # OPT command[2] = item from table
-def query(sql_list, db):
+def query(db, sql_list):
     song_list = {"length", "ranking"}
     artist_list = {"genre", "top_ranked"}
 
