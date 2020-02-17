@@ -82,26 +82,22 @@ elif args.lengthSong:
     print("Song Name: ", arg_str)
     userChoice = ['length', 'top_song', arg_str]
     temp = query(db, userChoice)
-    if temp:
-        # divide by 60 to get minutes
-        minute = temp // 60
-        # subtract seconds by mintues seconds
-        seconds = temp - (minute * 60)
-        #If seconds is less than 10, add a 0 before seconds
+
+    if temp != "":
+        minute = int(temp) // 60
+        seconds = int(temp) - (minute * 60)
         if seconds < 10:
             length = str(minute)
             length += ":0"
             length += str(seconds)
             print("The length is:", length)
-        #Output minute and seconds to console
         else:
             length = str(minute)
             length += ":"
             length += str(seconds)
             print("The length is:", length)
-
     else:
-        print(arg_str, " was not found. Query invalid. Try again.")
+        print(arg_str, " was not found. Try again")
 
 
 elif args.lengthArtist:
@@ -114,11 +110,11 @@ elif args.lengthArtist:
 
     arg_str = ' '.join(args.string)
     print("Artist Name: ", arg_str)
-    userChoice = ['length', 'song', arg_str]
+    userChoice = ['length', 'artist', arg_str]
     temp = query(db, userChoice)
-    if temp:
-        minute = temp // 60
-        seconds = temp - (minute * 60)
+    if temp != "":
+        minute = int(temp) // 60
+        seconds = int(temp) - (minute * 60)
         if seconds < 10:
             length = str(minute)
             length += ":0"
@@ -129,9 +125,10 @@ elif args.lengthArtist:
             length += ":"
             length += str(seconds)
             print("The length is:", length)
-
     else:
-        print(arg_str, " was not found. Query invalid. Try again.")
+        print(arg_str, " was not found. Try again")
+
+
 
 else:
     print(args)
