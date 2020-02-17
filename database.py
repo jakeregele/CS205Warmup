@@ -25,8 +25,8 @@ def main():
 # load data from file
 def load_data(db):
     # remove any existing tables from db
-    drop_tables(db, "DROP TABLE top_songs;")
-    drop_tables(db, "DROP TABLE top_artists;")
+    drop_tables(db, "DROP TABLE IF EXISTS top_songs;")
+    drop_tables(db, "DROP TABLE IF EXISTS top_artists;")
 
     # create db tables
     create_table(db, "CREATE TABLE top_artists(id INTEGER PRIMARY KEY, artist_name CHAR[32], genre CHAR[32], top_ranked CHAR[64]);")
