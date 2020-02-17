@@ -83,13 +83,17 @@ elif args.lengthSong:
     userChoice = ['length', 'top_song', arg_str]
     temp = query(db, userChoice)
     if temp:
+        # divide by 60 to get minutes
         minute = temp // 60
+        # subtract seconds by mintues seconds
         seconds = temp - (minute * 60)
+        #If seconds is less than 10, add a 0 before seconds
         if seconds < 10:
             length = str(minute)
             length += ":0"
             length += str(seconds)
             print("The length is:", length)
+        #Output minute and seconds to console
         else:
             length = str(minute)
             length += ":"
