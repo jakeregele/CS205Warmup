@@ -30,8 +30,10 @@ if args.loadData:
 elif args.genre:
     if not loaded:
         print("Database has to be loaded...")
-        # TODO: load database
+        # load database using function
+        # load_data(db)
         print("Database loaded!")
+        loaded = True
 
     # Add the user input to a string variable
     arg_str = ' '.join(args.string)
