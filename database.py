@@ -9,6 +9,17 @@ def main():
     db = sqlite3.connect('spotify_data.db')
 
     # main program loop for user input
+    while user_input.lower() not in ['q', 'quit']:
+
+        # get input from command line
+        user_input = input("")
+
+        # check to make sure user has not quit
+        if user_input.lower() not in ['q', 'quit']:
+            user_input.split()
+            query_string = parse(user_input)
+            if query_string != "-1":
+                query(query_string)
 
 
 # load data from file
