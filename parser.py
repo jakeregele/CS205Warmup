@@ -47,7 +47,7 @@ elif args.genre:
     # Create a list to send to DB
     userChoice = ['genre', 'song', arg_str]
     temp = query(db, userChoice)
-    if temp:
+    if temp != "":
         print("The Genre is:", temp)
     else:
         print(arg_str, " was not found. Query invalid. Try again.")
@@ -65,7 +65,7 @@ elif args.ranking:
     print("Artist Name: ", arg_str)
     userChoice = ['ranking', 'artist', arg_str]
     temp = query(db, userChoice)
-    if temp:
+    if temp != "":
         print("The ranking is:", temp)
     else:
         print(arg_str, " was not found. Query invalid. Try again.")
