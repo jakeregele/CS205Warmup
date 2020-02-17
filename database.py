@@ -115,7 +115,13 @@ def query(db, sql_list):
 def select_helper(query, db):
     cur = db.cursor()
     cur.execute(query)
-    val = cur.fetchone()[0]
+
+    row = cur.fetchone()
+    if row:
+        val = row[0]
+    else:
+        val = ""
+
     return val
 
 
