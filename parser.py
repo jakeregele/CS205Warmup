@@ -1,4 +1,9 @@
 import argparse
+from database import *
+import sqlite3
+
+# create database
+db = sqlite3.connect('spotify_data.db')
 
 # Create the parser
 musicParse = argparse.ArgumentParser(description='Music Database')
@@ -23,7 +28,7 @@ if args.loadData:
     arg_str = ' '.join(args.string)
 
     # load database using function
-    # load_data(db)
+    load_data(db)
     print("Database loaded!")
     loaded = True
 
@@ -31,7 +36,7 @@ elif args.genre:
     if not loaded:
         print("Database has to be loaded...")
         # load database using function
-        # load_data(db)
+        load_data(db)
         print("Database loaded!")
         loaded = True
 
@@ -50,7 +55,7 @@ elif args.ranking:
     if not loaded:
         print("Database has to be loaded...")
         # load database using function
-        # load_data(db)
+        load_data(db)
         print("Database loaded!")
         loaded = True
 
@@ -66,7 +71,7 @@ elif args.lengthSong:
     if not loaded:
         print("Database has to be loaded...")
         # load database using function
-        # load_data(db)
+        load_data(db)
         print("Database loaded!")
         loaded = True
 
@@ -82,7 +87,7 @@ elif args.lengthArtist:
     if not loaded:
         print("Database has to be loaded...")
         # load database using function
-        # load_data(db)
+        load_data(db)
         print("Database loaded!")
         loaded = True
 

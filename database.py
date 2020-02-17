@@ -81,11 +81,4 @@ def query(sqlString):
     return 0
 
 
-# translate commands from user into SQL query
-def parse(userList):
-    query_string = ''
-
-    return query_string
-
-
 main()
