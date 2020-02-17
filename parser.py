@@ -46,8 +46,9 @@ elif args.genre:
     print("Song Name: ", arg_str)
     # Create a list to send to DB
     userChoice = ['genre', 'song', arg_str]
-    # TODO: Send list to database
-    query(db, userChoice)
+    # Send list to database
+    response = query(db, userChoice)
+    print(response)
 
     # Testing to make sure list was correct
     # print("Genre: ", userChoice)
@@ -63,8 +64,9 @@ elif args.ranking:
     arg_str = ' '.join(args.string)
     print("Artist Name: ", arg_str)
     userChoice = ['ranking', 'artist', arg_str]
-    # TODO: Send list to database
-    query(db, userChoice)
+    # Send list to database
+    response = query(db, userChoice)
+    print(response)
 
     # Testing to make sure list was correct
     # print("Ranking: ", userChoice)
@@ -79,9 +81,21 @@ elif args.lengthSong:
 
     arg_str = ' '.join(args.string)
     print("Song Name: ", arg_str)
-    userChoice = ['length', 'top_song', arg_str]
-    # TODO: Send list to database
-    query(db, userChoice)
+    userChoice = ['length', 'song', arg_str]
+    # Send list to database
+    response = query(db, userChoice)
+    minute = response // 60
+    seconds = response - (minute * 60)
+    if seconds < 10:
+        length = str(minute)
+        length += ":0"
+        length += str(seconds)
+        print(length)
+    else:
+        length = str(minute)
+        length += ":"
+        length += str(seconds)
+        print(minute, ":", seconds)
 
     # Testing to make sure list was correct
     # print("Length: ", userChoice)
@@ -96,9 +110,21 @@ elif args.lengthArtist:
 
     arg_str = ' '.join(args.string)
     print("Artist Name: ", arg_str)
-    userChoice = ['length', 'song', arg_str]
-    # TODO: Send list to database
-    query(db, userChoice)
+    userChoice = ['length', 'top_song', arg_str]
+    # Send list to database
+    response = query(db, userChoice)
+    minute = response//60
+    seconds = response - (minute*60)
+    if seconds < 10:
+        length = str(minute)
+        length += ":0"
+        length += str(seconds)
+        print(length)
+    else:
+        length = str(minute)
+        length += ":"
+        length += str(seconds)
+        print(minute, ":", seconds)
 
     # Testing to make sure list was correct
     # print("Length: ", userChoice)
