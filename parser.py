@@ -50,7 +50,7 @@ elif args.ranking:
 
     arg_str = ' '.join(args.string)
     print("Artist Name: ", arg_str)
-    userChoice = ['ranking', 'top_song', arg_str]
+    userChoice = ['ranking', 'artist', arg_str]
     # TODO: Send list to database
 
     # Testing to make sure list was correct
@@ -87,6 +87,6 @@ elif args.lengthArtist:
 else:
     print(args)
     if loaded == 0:
-         print("Make sure to load the database with *any string* -loadData first")
+        print("Make sure to load the database with *any string* -loadData first")
     if loaded == 1:
         print("Choose only one of the optional arguments after typing the correct value")
