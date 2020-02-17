@@ -1,5 +1,5 @@
-Ôªøid,artist,genre,top ranked song
-1,Shawn Mendes,canadian pop,Se√±orita
+,artist,genre,top.ranked.song
+1,Shawn Mendes,canadian pop,SeÒorita
 2,Anuel AA,reggaeton flow,China
 3,Ariana Grande,dance pop,boyfriend
 4,Ed Sheeran,pop,Beautiful People
@@ -14,7 +14,7 @@
 13,Sech,panamanian pop,Otro Trago - Remix
 14,Drake,canadian hip hop,Money In The Grave
 15,Chris Brown,dance pop,No Guidance
-16,J Balvin,latin,LA CANCI√ìN
+16,J Balvin,latin,LA CANCI”N
 17,Y2K,canadian hip hop,Lalala
 18,Lizzo,escape room,Truth Hurts
 19,MEDUZA,pop house,Piece Of Your Heart
@@ -33,7 +33,6 @@
 32,Taylor Swift,dance pop,You Need To Calm Down
 33,Lady Gaga,dance pop,Shallow
 34,Khalid,pop,Talk
-35,ROSAL√çA,r&b en espanol,Con Altura
+35,ROSALÕA,r&b en espanol,Con Altura
 36,Marshmello,brostep,One Thing Right
-37,Nicky Jam,latin,Te Robar√©
-38,Marshmello,brostep,Happier
+37,Nicky Jam,latin,Te RobarÈ
