@@ -50,7 +50,7 @@ elif args.genre:
     if temp:
         print("The Genre is:", temp)
     else:
-        print("Query invalid")
+        print(arg_str, " was not found. Query invalid. Try again.")
 
 
 elif args.ranking:
@@ -68,7 +68,7 @@ elif args.ranking:
     if temp:
         print("The ranking is:", temp)
     else:
-        print("Query invalid")
+        print(arg_str, " was not found. Query invalid. Try again.")
 
 elif args.lengthSong:
     if not loaded:
@@ -101,7 +101,7 @@ elif args.lengthSong:
             print("The length is:", length)
 
     else:
-        print("Query invalid")
+        print(arg_str, " was not found. Query invalid. Try again.")
 
 
 elif args.lengthArtist:
@@ -131,7 +131,7 @@ elif args.lengthArtist:
             print("The length is:", length)
 
     else:
-        print("Query invalid")
+        print(arg_str, " was not found. Query invalid. Try again.")
 
 else:
     print(args)
