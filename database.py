@@ -1,7 +1,6 @@
 import sqlite3
 import csv
 
-
 def main():
     user_input = ''
 
@@ -29,8 +28,8 @@ def load_data(db):
     drop_tables(db, "DROP TABLE top_artists;")
 
     # create db tables
-    create_table(db, "CREATE TABLE top_artists(id INTEGER PRIMARY KEY, artist_name CHAR[32], genre CHAR[32], top_ranked_song CHAR[64]);")
-    create_table(db, "CREATE TABLE top_songs(id INTEGER PRIMARY KEY, song_name CHAR[64], song_length INTEGER, ranking INTEGER, artist INTEGER, FOREIGN KEY (artist) REFERENCES top_artists(id));")
+    create_table(db, "CREATE TABLE top_artists(id INTEGER PRIMARY KEY, artist_name CHAR[32], genre CHAR[32], top_ranked CHAR[64]);")
+    create_table(db, "CREATE TABLE top_songs(id INTEGER PRIMARY KEY, song_name CHAR[64], length INTEGER, ranking INTEGER, artist INTEGER, FOREIGN KEY (artist) REFERENCES top_artists(id));")
 
     # initialize db tables
     # populate each with csvs
@@ -78,15 +77,42 @@ def drop_tables(db, table):
 
 
 # query database, load data if not already loaded
-def query(sqlString):
-    return 0
+# list of commands
+# command[0] = return variable
+# command[1] = table
+# OPT command[2] = item from table
+def query(db, sql_list):
+    song_list = {"length", "ranking"}
+    artist_list = {"genre", "top_ranked"}
 
+    if (sql_list[1] == "song" and sql_list[0] in song_list) or (sql_list[1] == "artist" and sql_list[0] in artist_list):
+        # single query
+        selectQ = "SELECT " + sql_list[0] + " FROM "
+        selectQ += "top_songs WHERE song_name = " + "\"" + sql_list[2] + "\"" if sql_list[1] == "song" else "top_artists WHERE artist_name = " + "\"" + sql_list[2] + "\""
 
-# translate commands from user into SQL query
-def parse(userList):
-    query_string = ''
+        val = select_helper(selectQ, db)
+    else:
+        # join query
+        if sql_list[1] == "song":
+            # query from songs to artists
+            selectQ = "SELECT artist FROM top_songs WHERE song_name = " + "\"" + sql_list[2] + "\""
+            artist_id = select_helper(selectQ, db)
 
-    return query_string
+            selectQ = "SELECT " + sql_list[0] + " FROM top_artists WHERE id = " + str(artist_id)
+            val = select_helper(selectQ, db)
+        else:
+            # query from artists to songs
+            selectQ = "SELECT top_ranked FROM top_artists WHERE artist_name = " + "\"" + sql_list[2] + "\""
+            song_name = select_helper(selectQ, db)
 
+            selectQ = "SELECT " + sql_list[0] + " FROM top_songs WHERE song_name = " + "\"" + str(song_name) + "\""
+            val = select_helper(selectQ, db)
 
+    return val
+
+def select_helper(query, db):
+    cur = db.cursor()
+    cur.execute(query)
+    val = cur.fetchone()[0]
+    return val
 main()
