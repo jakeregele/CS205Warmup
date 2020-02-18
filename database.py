@@ -127,18 +127,6 @@ def select_helper(query, db):
     return val
 
 
-def parse(inputList):
-    inputList = inputList.split()
-    temp = ' '
-    return [inputList[0], inputList[1], temp.join(map(str, inputList[2::]))]
-
-
-def help():
-    print("to search a table, input what your searching for, the table name, and your search parameter")
-    print("you can search: 'length' 'top_ranked' 'ranking' or 'genre' in the tables 'artist' and 'song'")
-    print("sample search: top_ranked artist Bad Bunny")
-
-
 def checkInput(user_strings, loaded, db):
     # Split user input into a list so we can extract query and command
     user_input = user_strings.split()
@@ -168,6 +156,10 @@ def checkInput(user_strings, loaded, db):
             sendHelp()
         elif user_command == '-help':
             sendHelp()
+        elif user_command == '-quit':
+            print("Goodbye.")
+        elif user_command == "-q":
+            print("Goodbye.")
         else:
             noCorrect(user_input, loaded)
 
@@ -322,6 +314,7 @@ def sendHelp():
     print("   -ranking   : Enter artist name to find out their top song rank")
     print(" -lengthSong  : Enter song name to find the length of their top song")
     print("-lengthArtist : Enter artist to find the length of that song")
+    print("    -quit     : To end program run")
 
 
 def noCorrect(user_input, loaded):
