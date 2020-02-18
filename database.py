@@ -11,7 +11,7 @@ def main():
     print("To start enter a query with command or help for more info")
 
     # main program loop for user input
-    while user_words.lower() not in ['q', 'quit']:
+    while user_words.lower() not in ['-q', '-quit']:
         # get input from command line
         user_words = input("")
         loaded = checkInput(user_words, loaded, db)
