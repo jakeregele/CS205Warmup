@@ -1,5 +1,6 @@
 import sqlite3
 import csv
+import parser
 
 
 def main():
@@ -8,18 +9,19 @@ def main():
     # initialize connection with database
     db = sqlite3.connect('spotify_data.db')
 
+    load_data(db)
+
     # main program loop for user input
     while user_input.lower() not in ['q', 'quit']:
 
         # get input from command line
-        user_input = input("")
+        user_input = input("enter a query or say 'help': ")
+        if user_input in ['Help', 'help']:
+            help()
+        else:
+            print(query(db, parse(user_input)))
 
-        # check to make sure user has not quit
-        if user_input.lower() not in ['q', 'quit']:
-            user_input.split()
-            query_string = parse(user_input)
-            if query_string != "-1":
-                query(query_string)
+
 
 
 # load data from file
@@ -83,6 +85,7 @@ def drop_tables(db, table):
 # command[1] = table
 # OPT command[2] = item from table
 def query(db, sql_list):
+    print(sql_list)
     song_list = {"length", "ranking"}
     artist_list = {"genre", "top_ranked"}
 
@@ -124,5 +127,14 @@ def select_helper(query, db):
 
     return val
 
+def parse(inputList):
+    inputList = inputList.split()
+    temp = ' '
+    return [inputList[0], inputList[1], temp.join(map(str, inputList[2::]))]
+
+def help():
+    print("to search a table, input what your searching for, the table name, and your search parameter")
+    print("you can search: 'length' 'top_ranked' 'ranking' or 'genre' in the tables 'artist' and 'song'")
+    print("sample search: top_ranked artist Bad Bunny")
 
 main()
