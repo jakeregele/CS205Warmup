@@ -7,7 +7,7 @@ def main():
     loaded = False
     user_words = ""
 
-    print("Welcome to the Top 50 Spotify Data base")
+    print("Welcome to the Top 50 Spotify Database")
     print("To start enter a query with command or help for more info")
 
     # main program loop for user input
