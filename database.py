@@ -8,7 +8,7 @@ def main():
     user_words = ""
 
     print("Welcome to the Top 50 Spotify Database")
-    print("To start enter a query with command or help for more info")
+    print("To start enter query with a command or '-help' for more info")
 
     # main program loop for user input
     while user_words.lower() not in ['-q', '-quit']:
