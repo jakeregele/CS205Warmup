@@ -189,8 +189,8 @@ def checkInput(user_strings, loaded, db):
         elif user_input[numCommand] == '-lengthArtist':
             loaded = lengthArtist(user_query, loaded, db)
 
-        elif user_input[numCommand] == '-artist':
-            loaded = artist(user_query, loaded, db)
+        elif user_input[numCommand] == '-song':
+            loaded = song(user_query, loaded, db)
 
         else:
             noCorrect(user_input, loaded)
@@ -268,7 +268,7 @@ def ranking(user_query, loaded, db):
     return loaded
 
 
-def artist(user_query, loaded, db):
+def song(user_query, loaded, db):
     if not loaded:
         print("Database has to be loaded...")
         # load database using function
@@ -355,7 +355,7 @@ def sendHelp():
     print(" ")
     print("    Command   :      Information")
     print('   -loadData  : Starting command to load database')
-    print("    -artist   : Enter artist name to find their top song")
+    print("    -song     : Enter artist name to find their top song")
     print("   -ranking   : Enter artist name to find out their top song ranking")
     print(" -genreArtist : Enter artist to find out it's genre")
     print("  -genreSong  : Enter song to find out it's genre")
