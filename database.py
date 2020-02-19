@@ -251,7 +251,7 @@ def lengthSong(user_query, loaded, db):
         loaded = True
 
     print("Song Name: ", user_query)
-    userChoice = ['length', 'artist', user_query]
+    userChoice = ['length', 'song', user_query]
     temp = query(db, userChoice)
 
     if temp != "":
@@ -312,8 +312,8 @@ def sendHelp():
     print('   -loadData  : Starting command to load database')
     print("    -genre    : Enter artist to find out it's genre")
     print("   -ranking   : Enter artist name to find out their top song rank")
-    print(" -lengthSong  : Enter song name to find the length of their top song")
-    print("-lengthArtist : Enter artist to find the length of that song")
+    print(" -lengthSong  : Enter song name to find the length of that song")
+    print("-lengthArtist : Enter artist to find the length of their top song")
     print("    -quit     : To end program run")
 
 
