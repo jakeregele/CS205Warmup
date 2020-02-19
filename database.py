@@ -189,6 +189,9 @@ def checkInput(user_strings, loaded, db):
         elif user_input[numCommand] == '-lengthArtist':
             loaded = lengthArtist(user_query, loaded, db)
 
+        elif user_input[numCommand] == '-artist':
+            loaded = artist(user_query, loaded, db)
+
         else:
             noCorrect(user_input, loaded)
 
@@ -265,6 +268,25 @@ def ranking(user_query, loaded, db):
     return loaded
 
 
+def artist(user_query, loaded, db):
+    if not loaded:
+        print("Database has to be loaded...")
+        # load database using function
+        load_data(db)
+        print("Database loaded!")
+        loaded = True
+
+    print("Artist Name: ", user_query)
+    userChoice = ['song_name', 'artist', user_query]
+    temp = query(db, userChoice)
+    if temp != "":
+        print("Top Song:", temp)
+    else:
+        print(user_query, " was not found. Query invalid. Try again.")
+
+    return loaded
+
+
 def lengthSong(user_query, loaded, db):
     if not loaded:
         print("Database has to be loaded...")
@@ -333,9 +355,10 @@ def sendHelp():
     print(" ")
     print("    Command   :      Information")
     print('   -loadData  : Starting command to load database')
-    print("   -ranking   : Enter artist name to find out their top song rank")
+    print("    -artist   : Enter artist name to find their top song")
+    print("   -ranking   : Enter artist name to find out their top song ranking")
     print(" -genreArtist : Enter artist to find out it's genre")
-    print("  -genreSong  : Enter artist to find out it's genre")
+    print("  -genreSong  : Enter song to find out it's genre")
     print(" -lengthSong  : Enter song name to find the length of that song")
     print("-lengthArtist : Enter artist to find the length of their top song")
     print("    -quit     : To end program run")
