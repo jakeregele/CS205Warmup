@@ -180,8 +180,11 @@ def checkInput(user_strings, loaded, db):
         elif user_input[numCommand] == '-genreSong':
             loaded = genreSong(user_query, loaded, db)
 
-        elif user_input[numCommand] == '-ranking':
-            loaded = ranking(user_query, loaded, db)
+        elif user_input[numCommand] == '-rankingArtist':
+            loaded = rankingArtist(user_query, loaded, db)
+
+        elif user_input[numCommand] == '-rankingSong':
+            loaded = rankingSong(user_query, loaded, db)
 
         elif user_input[numCommand] == '-lengthSong':
             loaded = lengthSong(user_query, loaded, db)
@@ -249,7 +252,7 @@ def genreSong(user_query, loaded, db):
     return loaded
 
 
-def ranking(user_query, loaded, db):
+def rankingArtist(user_query, loaded, db):
     if not loaded:
         print("Database has to be loaded...")
         # load database using function
@@ -259,6 +262,24 @@ def ranking(user_query, loaded, db):
 
     print("Artist Name: ", user_query)
     userChoice = ['ranking', 'artist', user_query]
+    temp = query(db, userChoice)
+    if temp != "":
+        print("The ranking is:", temp)
+    else:
+        print(user_query, " was not found. Query invalid. Try again.")
+
+    return loaded
+
+def rankingSong(user_query, loaded, db):
+    if not loaded:
+        print("Database has to be loaded...")
+        # load database using function
+        load_data(db)
+        print("Database loaded!")
+        loaded = True
+
+    print("Song name: ", user_query)
+    userChoice = ['ranking', 'song', user_query]
     temp = query(db, userChoice)
     if temp != "":
         print("The ranking is:", temp)
@@ -353,15 +374,18 @@ def sendHelp():
     print("   Then choose one of the following commands")
     print("         example query 'Ariana Grande -ranking' ")
     print(" ")
-    print("    Command   :      Information")
-    print('   -loadData  : Starting command to load database')
-    print("    -song     : Enter artist name to find their top song")
-    print("   -ranking   : Enter artist name to find out their top song ranking")
-    print(" -genreArtist : Enter artist to find out it's genre")
-    print("  -genreSong  : Enter song to find out it's genre")
-    print(" -lengthSong  : Enter song name to find the length of that song")
-    print("-lengthArtist : Enter artist to find the length of their top song")
-    print("    -quit     : To end program run")
+    print("    Command      :      Information")
+    print('   -loadData     : Starting command to load database')
+    print("     -song       : Enter artist to find their top song")
+    print(" -rankingArtist  : Enter artist to find out their top song ranking")
+    print("  -genreArtist   : Enter artist to find out it's genre")
+    print("  -lengthArtist  : Enter artist to find the length of their top song")
+    print("     -artist     : Enter song to find the artist's name")
+    print("   -genreSong    : Enter song to find out it's genre")
+    print("  -rankingSong   : Enter song to find out their top song ranking")
+    print("   -lengthSong   : Enter song to find the length of that song")
+
+    print("      -quit      : To end program run")
 
 
 def noCorrect(user_input, loaded):
