@@ -1,3 +1,6 @@
+# The OG Parser file. My absolute baby boy. He worked great but not good enough :(
+# His functionality was adjusted in the homemade parser file and then finally fully realized in the database file
+
 import argparse
 from database import *
 import sqlite3

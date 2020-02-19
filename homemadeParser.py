@@ -1,6 +1,7 @@
-# CODE FILE FOR ALL PARSER CODE
-# SHOULD NOT RUN
-# JUST USED FOR WOKRING THROUGH
+# Starting point for when I realized argparse was just not going to work the way I wanted
+# This is were all the methods in database began and then became fully realized over there
+# This code should not be ran as it's not totally complete
+
 
 # # Create a group for the user choice (mutually exclusive so only one can be true
 # group = musicParse.add_mutually_exclusive_group()
