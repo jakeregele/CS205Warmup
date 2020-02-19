@@ -174,8 +174,11 @@ def checkInput(user_strings, loaded, db):
         elif user_input[numCommand] == '-loadData':
             loaded = loadData(loaded, db)
 
-        elif user_input[numCommand] == '-genre':
-            loaded = genre(user_query, loaded, db)
+        elif user_input[numCommand] == '-genreArtist':
+            loaded = genreArtist(user_query, loaded, db)
+
+        elif user_input[numCommand] == '-genreSong':
+            loaded = genreSong(user_query, loaded, db)
 
         elif user_input[numCommand] == '-ranking':
             loaded = ranking(user_query, loaded, db)
@@ -202,7 +205,27 @@ def loadData(loaded, db):
     return loaded
 
 
-def genre(user_query, loaded, db):
+def genreArtist(user_query, loaded, db):
+    if not loaded:
+        print("Database has to be loaded...")
+        # load database using function
+        load_data(db)
+        print("Database loaded!")
+        loaded = True
+
+    # Output what the user inputted
+    print("Artist: ", user_query)
+    # Create a list to send to DB
+    userChoice = ['genre', 'artist', user_query]
+    temp = query(db, userChoice)
+    if temp != "":
+        print("The Genre is:", temp)
+    else:
+        print(user_query, " was not found. Query invalid. Try again.")
+
+    return loaded
+
+def genreSong(user_query, loaded, db):
     if not loaded:
         print("Database has to be loaded...")
         # load database using function
@@ -213,7 +236,7 @@ def genre(user_query, loaded, db):
     # Output what the user inputted
     print("Song Name: ", user_query)
     # Create a list to send to DB
-    userChoice = ['genre', 'artist', user_query]
+    userChoice = ['genre', 'song', user_query]
     temp = query(db, userChoice)
     if temp != "":
         print("The Genre is:", temp)
@@ -310,8 +333,9 @@ def sendHelp():
     print(" ")
     print("    Command   :      Information")
     print('   -loadData  : Starting command to load database')
-    print("    -genre    : Enter artist to find out it's genre")
     print("   -ranking   : Enter artist name to find out their top song rank")
+    print(" -genreArtist : Enter artist to find out it's genre")
+    print("  -genreSong  : Enter artist to find out it's genre")
     print(" -lengthSong  : Enter song name to find the length of that song")
     print("-lengthArtist : Enter artist to find the length of their top song")
     print("    -quit     : To end program run")
