@@ -4,9 +4,12 @@ import csv
 
 def main():
     db = sqlite3.connect('spotify_data.db')
+    # Initialize the loaded to false since database hasn't been loaded yet
     loaded = False
+    # Initialize user input to empty string
     user_words = ""
 
+    # Output a nice welcome message
     print("Welcome to the Top 50 Spotify Database")
     print("To start enter query with a command or '-help' for more info")
 
@@ -14,6 +17,7 @@ def main():
     while user_words.lower() not in ['-q', '-quit']:
         # get input from command line
         user_words = input("")
+        # send input to method to decide what the user is asking for
         loaded = checkInput(user_words, loaded, db)
         print(" ")
 
@@ -204,7 +208,6 @@ def checkInput(user_strings, loaded, db):
     return loaded
 
 
-# If-elif-else statements for each member in the mut. excl. group
 def loadData(loaded, db):
     # load database using function
     db = sqlite3.connect('spotify_data.db')
@@ -215,6 +218,7 @@ def loadData(loaded, db):
 
 
 def genreArtist(user_query, loaded, db):
+    # If database hasn't been loaded then load database and change loaded to true
     if not loaded:
         print("Database has to be loaded...")
         # load database using function
@@ -227,6 +231,7 @@ def genreArtist(user_query, loaded, db):
     # Create a list to send to DB
     userChoice = ['genre', 'artist', user_query]
     temp = query(db, userChoice)
+    # If query function returns empty string, the user input was not found
     if temp != "":
         print("The Genre is:", temp)
     else:
@@ -235,6 +240,7 @@ def genreArtist(user_query, loaded, db):
     return loaded
 
 def genreSong(user_query, loaded, db):
+    # If database hasn't been loaded then load database and change loaded to true
     if not loaded:
         print("Database has to be loaded...")
         # load database using function
@@ -247,6 +253,7 @@ def genreSong(user_query, loaded, db):
     # Create a list to send to DB
     userChoice = ['genre', 'song', user_query]
     temp = query(db, userChoice)
+    # If query function returns empty string, the user input was not found
     if temp != "":
         print("The Genre is:", temp)
     else:
@@ -256,6 +263,7 @@ def genreSong(user_query, loaded, db):
 
 
 def rankingArtist(user_query, loaded, db):
+    # If database hasn't been loaded then load database and change loaded to true
     if not loaded:
         print("Database has to be loaded...")
         # load database using function
@@ -264,8 +272,10 @@ def rankingArtist(user_query, loaded, db):
         loaded = True
 
     print("Artist Name: ", user_query)
+    # Create a list to send to DB
     userChoice = ['ranking', 'artist', user_query]
     temp = query(db, userChoice)
+    # If query function returns empty string, the user input was not found
     if temp != "":
         print("The ranking is:", temp)
     else:
@@ -273,10 +283,11 @@ def rankingArtist(user_query, loaded, db):
 
     return loaded
 
+
 def rankingSong(user_query, loaded, db):
+    #Function works exactly the same as rankingArtist except the list being sent to DB has changed
     if not loaded:
         print("Database has to be loaded...")
-        # load database using function
         load_data(db)
         print("Database loaded!")
         loaded = True
@@ -293,6 +304,7 @@ def rankingSong(user_query, loaded, db):
 
 
 def song(user_query, loaded, db):
+    # If database hasn't been loaded then load database and change loaded to true
     if not loaded:
         print("Database has to be loaded...")
         # load database using function
@@ -301,8 +313,10 @@ def song(user_query, loaded, db):
         loaded = True
 
     print("Artist Name: ", user_query)
+    # Create a list to send to DB
     userChoice = ['song_name', 'artist', user_query]
     temp = query(db, userChoice)
+    # If query function returns empty string, the user input was not found
     if temp != "":
         print("Top Song:", temp)
     else:
@@ -312,16 +326,15 @@ def song(user_query, loaded, db):
 
 
 def artist(user_query, loaded, db):
+    # Function works exactly the same as song except the list being sent to DB has changed
     if not loaded:
         print("Database has to be loaded...")
-        # load database using function
+
         load_data(db)
         print("Database loaded!")
         loaded = True
 
-    # Output what the user inputted
     print("Song Name: ", user_query)
-    # Create a list to send to DB
     userChoice = ['artist_name', 'song', user_query]
     temp = query(db, userChoice)
     if temp != "":
@@ -333,6 +346,7 @@ def artist(user_query, loaded, db):
 
 
 def lengthSong(user_query, loaded, db):
+    # If database hasn't been loaded then load database and change loaded to true
     if not loaded:
         print("Database has to be loaded...")
         # load database using function
@@ -341,12 +355,18 @@ def lengthSong(user_query, loaded, db):
         loaded = True
 
     print("Song Name: ", user_query)
+    # Create a list to send to DB
     userChoice = ['length', 'song', user_query]
     temp = query(db, userChoice)
 
+    # If query function returns empty string, the user input was not found
     if temp != "":
+        # Get the minute by dividing seconds
         minute = int(temp) // 60
+        # Get the remaining seconds by subtracting the minutes from song length
         seconds = int(temp) - (minute * 60)
+        # Depending on how many remaining seconds the output changes
+        # If seconds is less than 10 the system has to output a 0 for readability
         if seconds < 10:
             length = str(minute)
             length += ":0"
@@ -364,6 +384,7 @@ def lengthSong(user_query, loaded, db):
 
 
 def lengthArtist(user_query, loaded, db):
+    # Function works exactly the same as lengthSong except the list being sent to DB has changed
     if not loaded:
         print("Database has to be loaded...")
         # load database using function
@@ -394,6 +415,7 @@ def lengthArtist(user_query, loaded, db):
 
 
 def sendHelp():
+    # Output help text to console
     print(" First type a song or artist with correct spelling & capitalization")
     print("   Then choose one of the following commands")
     print("         example query 'Ariana Grande -ranking' ")
@@ -408,12 +430,14 @@ def sendHelp():
     print("   -genreSong    : Enter song to find out it's genre")
     print("  -rankingSong   : Enter song to find out their top song ranking")
     print("   -lengthSong   : Enter song to find the length of that song")
-
     print("      -quit      : To end program run")
 
 
 def noCorrect(user_input, loaded):
+    # Output the user's input so they know what they entered
     print(user_input, "is not valid")
+
+    # Check to see if the database has been loaded and output helpful text
     if not loaded:
         print("Make sure to load the database with -loadData first")
     elif loaded:
