@@ -424,7 +424,7 @@ def sendHelp():
     print('   -loadData     : Starting command to load database')
     print("     -song       : Enter artist to find their top song")
     print(" -rankingArtist  : Enter artist to find out their top song ranking")
-    print("  -genreArtist   : Enter artist to find out it's genre")
+    print("  -genreArtist   : Enter artist to find out their top genre")
     print("  -lengthArtist  : Enter artist to find the length of their top song")
     print("     -artist     : Enter song to find the artist's name")
     print("   -genreSong    : Enter song to find out it's genre")
