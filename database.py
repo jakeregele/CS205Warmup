@@ -418,7 +418,7 @@ def sendHelp():
     # Output help text to console
     print(" First type a song or artist with correct spelling & capitalization")
     print("   Then choose one of the following commands")
-    print("         example query 'Ariana Grande -ranking' ")
+    print("         example query 'Ariana Grande -rankingArtist' ")
     print(" ")
     print("    Command      :      Information")
     print('   -loadData     : Starting command to load database')
@@ -428,7 +428,7 @@ def sendHelp():
     print("  -lengthArtist  : Enter artist to find the length of their top song")
     print("     -artist     : Enter song to find the artist's name")
     print("   -genreSong    : Enter song to find out it's genre")
-    print("  -rankingSong   : Enter song to find out their top song ranking")
+    print("  -rankingSong   : Enter song to find out that song's ranking")
     print("   -lengthSong   : Enter song to find the length of that song")
     print("      -quit      : To end program run")
 
