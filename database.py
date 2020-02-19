@@ -192,6 +192,9 @@ def checkInput(user_strings, loaded, db):
         elif user_input[numCommand] == '-song':
             loaded = song(user_query, loaded, db)
 
+        elif user_input[numCommand] == '-artist':
+            loaded = artist(user_query, loaded, db)
+
         else:
             noCorrect(user_input, loaded)
 
@@ -281,6 +284,27 @@ def song(user_query, loaded, db):
     temp = query(db, userChoice)
     if temp != "":
         print("Top Song:", temp)
+    else:
+        print(user_query, " was not found. Query invalid. Try again.")
+
+    return loaded
+
+
+def artist(user_query, loaded, db):
+    if not loaded:
+        print("Database has to be loaded...")
+        # load database using function
+        load_data(db)
+        print("Database loaded!")
+        loaded = True
+
+    # Output what the user inputted
+    print("Song Name: ", user_query)
+    # Create a list to send to DB
+    userChoice = ['artist_name', 'song', user_query]
+    temp = query(db, userChoice)
+    if temp != "":
+        print("The artist is:", temp)
     else:
         print(user_query, " was not found. Query invalid. Try again.")
 
