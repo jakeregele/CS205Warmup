@@ -137,7 +137,7 @@ def checkInput(user_strings, loaded, db):
 
     # Get the index of the command
     numCommand = len(user_input) - 1
-    user_command = str(user_input[numCommand])
+    user_command = "" if numCommand < 0 else str(user_input[numCommand])
 
     # Initialize a counter and query string
     counter = 0
